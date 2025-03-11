@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Système de Réservation d'Hôtels</title>
+    <title>API de Réservation d'Hôtels</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -44,38 +44,6 @@
             margin-bottom: 2rem;
         }
 
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #3b82f6;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #2563eb;
-        }
-
-        .secondary-btn {
-            background-color: transparent;
-            border: 1px solid #3b82f6;
-            color: #3b82f6;
-        }
-
-        .secondary-btn:hover {
-            background-color: #ebf5ff;
-        }
-
         .api-info {
             background-color: #e2e8f0;
             border-radius: 0.5rem;
@@ -110,32 +78,23 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="title">Système de Réservation d'Hôtels</h1>
+    <h1 class="title">API de Réservation d'Hôtels</h1>
     <p class="subtitle">Une API RESTful développée avec Laravel 12</p>
-
-
 
     <div class="api-info">
         <h2>Points de terminaison principaux</h2>
         <div class="endpoints">
-            <div class="endpoint">
-                <span class="method get">GET</span> /api/hotels
-            </div>
-            <div class="endpoint">
-                <span class="method get">GET</span> /api/hotels/{id}
-            </div>
-            <div class="endpoint">
-                <span class="method post">POST</span> /api/reservations
-            </div>
-            <div class="endpoint">
-                <span class="method get">GET</span> /api/reservations
-            </div>
-            <div class="endpoint">
-                <span class="method put">PUT</span> /api/reservations/{id}
-            </div>
-            <div class="endpoint">
-                <span class="method delete">DELETE</span> /api/reservations/{id}
-            </div>
+            <div class="endpoint"><span class="method post">POST</span> /api/register</div>
+            <div class="endpoint"><span class="method post">POST</span> /api/login/customer</div>
+            <div class="endpoint"><span class="method post">POST</span> /api/login/admin</div>
+            <div class="endpoint"><span class="method get">GET</span> /api/hotels</div>
+            <div class="endpoint"><span class="method get">GET</span> /api/hotels/{id}</div>
+            <div class="endpoint"><span class="method post">POST</span> /api/reservations</div>
+            <div class="endpoint"><span class="method get">GET</span> /api/reservations</div>
+            <div class="endpoint"><span class="method get">GET</span> /api/reservations/{id}</div>
+            <div class="endpoint"><span class="method put">PUT</span> /api/reservations/{id}</div>
+            <div class="endpoint"><span class="method delete">DELETE</span> /api/reservations/{id}</div>
+            <div class="endpoint"><span class="method post">POST</span> /api/logout</div>
         </div>
     </div>
 </div>
