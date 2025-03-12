@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReservationRequest;
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
 use App\Repositories\ReservationRepository;
@@ -38,13 +39,10 @@ class ReservationController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(ReservationRequest $request)
     {
-        $validated = $request->validate([
-            'hotel_id' => 'required|exists:hotels,id',
-            'check_in' => 'required|date|after_or_equal:today',
-            'check_out' => 'required|date|after:check_in',
-        ]);
+
+        $validated = $request->validated();
 
         // on lui donne pas le droit de mettre le id du customer car c'est lui meme un customer
         $validated['customer_id'] = auth()->id();
@@ -53,8 +51,9 @@ class ReservationController extends Controller
         return new ReservationResource($reservation);
     }
 
-    public function update(Request $request, $id)
+    public function update(ReservationRequest $request, $id)
     {
+        $validated = $request->validated();
         $reservation = $this->reservationRepository->find($id);
 
         // Vérifier que l'utilisateur authentifié est bien le propriétaire de la réservation
@@ -62,12 +61,7 @@ class ReservationController extends Controller
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
-        $validated = $request->validate([
-            'hotel_id' => 'sometimes|required|exists:hotels,id',
-            'customer_id' => 'sometimes|required|exists:customers,id',
-            'check_in' => 'sometimes|required|date|after_or_equal:today',
-            'check_out' => 'sometimes|required|date|after:check_in',
-        ]);
+
 
         $this->reservationRepository->update($validated, $id);
         $reservation = $this->reservationRepository->find($id);

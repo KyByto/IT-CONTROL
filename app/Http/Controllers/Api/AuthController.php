@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthRequest;
+use App\Http\Requests\RegisterCustomerRequest;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,13 +14,9 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function registerCustomer(Request $request)
+    public function registerCustomer(RegisterCustomerRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:customers',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+
 
         $customer = Customer::create([
             'name' => $request->name,
@@ -35,12 +33,9 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function loginCustomer(Request $request)
+    public function loginCustomer(AuthRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+
 
         $customer = Customer::where('email', $request->email)->first();
 
@@ -59,12 +54,9 @@ class AuthController extends Controller
         ]);
     }
 
-    public function loginAdmin(Request $request)
+    public function loginAdmin(AuthRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+
 
         $user = User::where('email', $request->email)->first();
 

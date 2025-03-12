@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\HotelRequest;
 use App\Http\Resources\HotelResource;
 use App\Repositories\HotelRepository;
 use Illuminate\Http\Request;
@@ -29,23 +30,17 @@ class HotelController extends Controller
         return new HotelResource($hotel);
     }
 
-    public function store(Request $request)
+    public function store(HotelRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-        ]);
+
 
         $hotel = $this->hotelRepository->create($request->all());
         return new HotelResource($hotel);
     }
 
-    public function update(Request $request, $id)
+    public function update(HotelRequest $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-        ]);
+
 
         $this->hotelRepository->update($request->all(), $id);
         $hotel = $this->hotelRepository->find($id);
