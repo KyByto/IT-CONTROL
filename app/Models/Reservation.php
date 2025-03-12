@@ -15,8 +15,12 @@ class Reservation extends Model
         'check_out' => 'date',
     ];
 
-    protected function hotel() : BelongsTo {
+    public function hotel() : BelongsTo {
         return $this->belongsTo(Hotel::class);
+    }
+
+    public function customer() : BelongsTo {
+        return $this->belongsTo(Customer::class);
     }
 
 

@@ -19,6 +19,7 @@ Route::middleware(['auth:customer'])->group(function () {
         Route::post('/reservations', [ReservationController::class, 'store']);
     });
 
+    // ici on donne seulement les reservations du user lui meme et non tout les reservations
     Route::get('/reservations', [ReservationController::class, 'index']);
     Route::get('/reservations/{id}', [ReservationController::class, 'show']);
     Route::put('/reservations/{id}', [ReservationController::class, 'update']);

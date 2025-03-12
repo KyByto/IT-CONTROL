@@ -49,5 +49,9 @@ class ReservationRepository implements ReservationRepositoryInterface
         return $this->model->where('email', $email)->get();
     }
 
+    public function findByCustomerId($customerId)
+    {
+        return $this->model->where('customer_id', $customerId)->get();
+    }
 
 }

@@ -13,7 +13,7 @@ class Hotel extends Model
     // içi j'ai proteger les attributs sensibles
     protected $fillable = ['name' , 'location'];
 
-    protected function reservations() : HasMany
+    public function reservations() : HasMany
     {
         return $this->hasMany(Reservation::class);
     }
