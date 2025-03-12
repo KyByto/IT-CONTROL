@@ -11,7 +11,7 @@ Route::post('/login/customer', [AuthController::class, 'loginCustomer']);
 Route::post('/login/admin', [AuthController::class, 'loginAdmin']);
 
 // Routes protégées par le guard customer
-Route::middleware(['auth:customer'])->group(function () {
+Route::middleware(['auth:customer' ,'auth:customer'])->group(function () {
     Route::get('/hotels', [HotelController::class, 'index']);
     Route::get('/hotels/{id}', [HotelController::class, 'show']);
 
