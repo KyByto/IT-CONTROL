@@ -89,7 +89,7 @@ class ReservationController extends Controller
 
     public function getByHotel($hotelId)
     {
-        $reservations = $this->reservationRepository->findByHotelId($hotelId);
+        $reservations = $this->reservationRepository->getByHotel($hotelId);
         return ReservationResource::collection($reservations);
     }
 
