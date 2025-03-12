@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HotelResource;
-use App\Repositories\Contracts\HotelRepositoryInterface;
+use App\Repositories\HotelRepository;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
     protected $hotelRepository;
 
-    public function __construct(HotelRepositoryInterface $hotelRepository)
+    public function __construct(HotelRepository $hotelRepository)
     {
+
         $this->hotelRepository = $hotelRepository;
     }
 

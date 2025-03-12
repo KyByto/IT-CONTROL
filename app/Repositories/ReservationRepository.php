@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace App\Repositories;
 
 use App\Models\Reservation;
 use App\Repositories\Contracts\ReservationRepositoryInterface;
@@ -44,7 +44,7 @@ class ReservationRepository implements ReservationRepositoryInterface
     {
         return $this->model->where('hotel_id', $hotel_id)->get();
     }
-    public function findByEmail( string $email)
+    public function findByEmail( $email)
     {
         return $this->model->where('email', $email)->get();
     }

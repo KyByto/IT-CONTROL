@@ -5,8 +5,8 @@ namespace App\Providers;
 use App\Repositories\Contracts\HotelRepositoryInterface;
 use App\Repositories\Contracts\ReservationRepositoryInterface;
 use App\Repositories;
-use App\Repositories\Eloquent\HotelRepository;
-use App\Repositories\Eloquent\ReservationRepository;
+use App\Repositories\HotelRepository;
+use App\Repositories\ReservationRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

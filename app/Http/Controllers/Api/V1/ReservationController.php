@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReservationResource;
-use App\Repositories\Contracts\ReservationRepositoryInterface;
+use App\Repositories\ReservationRepository;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
     protected $reservationRepository;
 
-    public function __construct(ReservationRepositoryInterface $reservationRepository)
+    public function __construct(ReservationRepository $reservationRepository)
     {
         $this->reservationRepository = $reservationRepository;
     }
@@ -33,8 +33,8 @@ class ReservationController extends Controller
         $validated = $request->validate([
             'hotel_id' => 'required|exists:hotels,id',
             'customer_id' => 'required|exists:customers,id',
-            'check_in_date' => 'required|date|after_or_equal:today',
-            'check_out_date' => 'required|date|after:check_in_date',
+            'check_in' => 'required|date|after_or_equal:today',
+            'check_out' => 'required|date|after:check_in',
         ]);
 
         $reservation = $this->reservationRepository->create($validated);
@@ -46,8 +46,8 @@ class ReservationController extends Controller
         $validated = $request->validate([
             'hotel_id' => 'sometimes|required|exists:hotels,id',
             'customer_id' => 'sometimes|required|exists:customers,id',
-            'check_in_date' => 'sometimes|required|date|after_or_equal:today',
-            'check_out_date' => 'sometimes|required|date|after:check_in_date',
+            'check_in' => 'sometimes|required|date|after_or_equal:today',
+            'check_out' => 'sometimes|required|date|after:check_in',
         ]);
 
         $this->reservationRepository->update($validated, $id);
